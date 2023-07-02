@@ -3,14 +3,17 @@ Final project for the master degree exam, university of Genoa, academic year 202
 
 ## BDI only
 First version of the project, includes only BDI agents.
+
 This project was developed for the first preliminary testings and conclusions.
 
 ## RL sandbox
 Training project for the RL agents.
+
 Since RL agents need to be trained before play with BDI agents, this project was developed to make them play in a sandbox environment in order to have them learn a game completion policy.
 
 ## BDI + RL
 Final version of the project, includes both the BDI agents of the first project and the RL agents of the second project.
+
 Here BDI and pre-trained RL agents can play together.
 
 ##
