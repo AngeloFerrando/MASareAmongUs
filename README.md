@@ -1,4 +1,4 @@
-# Master_Degree_Final_Project
+# Master Degree Final Project
 Final project for the master degree exam, university of Genoa, academic year 2022/2023.
 
 ## BDI only
