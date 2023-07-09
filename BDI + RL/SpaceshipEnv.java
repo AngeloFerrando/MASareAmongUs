@@ -220,8 +220,7 @@ public class SpaceshipEnv extends Environment {
 			return true;
 		} else if (action.getFunctor().equals("trust")) {
 			String otherPlayer = action.getTerm(0).toString();
-			untrustList.remove(player+"_"+otherPlayer);
-			if (!trustList.contains(player+"_"+otherPlayer))
+			if (!trustList.contains(player+"_"+otherPlayer) && !untrustList.contains(player+"_"+otherPlayer))
 				trustList.add(player+"_"+otherPlayer);
 			return true;
 		} else if (action.getFunctor().equals("untrust")) {
