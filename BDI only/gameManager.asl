@@ -11,14 +11,17 @@
 +expulsion(A) <- .send(A,tell,expelled).
 
 //possible win situations, triggered by the environment
-+announceVictory(impostors) : not finished <- print("The spaceship has been taken over and now belongs to impostors");
-												+finished;
-												.broadcast(tell,endGame).
++announceVictory(impostors) : not finished <-
+	print("The spaceship has been taken over and now belongs to impostors");
+	+finished;
+	.broadcast(tell,endGame).
 
-+announceVictory(crewmates1) : not finished <- print("All of the machinery were fixed, the central computer is now fully operating and has expelled the impostors");
-												+finished;
-												.broadcast(tell,endGame).
++announceVictory(crewmates1) : not finished <-
+	print("All of the machinery were fixed, the central computer is now fully operating and has expelled the impostors");
+	+finished;
+	.broadcast(tell,endGame).
 
-+announceVictory(crewmates2) : not finished <- print("All the impostors have been expelled by crewmates");
-												+finished;
-												.broadcast(tell,endGame).
++announceVictory(crewmates2) : not finished <-
+	print("All the impostors have been expelled by crewmates");
+	+finished;
+	.broadcast(tell,endGame).
