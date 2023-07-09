@@ -17,7 +17,7 @@ substate_action(reported,dontVote).
 +myState(S1) : not expelled <-
 				.findall(A,state_action(S1,A),L);
 				.nth(0,L,Action);
-				+executeAction(Action).
+				+chosenAction(Action).
 
 //receiving a new state from the environment as a consequence of the executed action
 +newState(NS1)[source(percept)] : myState(S1) <-
@@ -30,27 +30,27 @@ substate_action(reported,dontVote).
 				-newSubState(S2)[source(percept)];
 				.findall(A,substate_action(S2,A),L);
 				.nth(0,L,Action);
-				+executeAction(Action,N).
+				+chosenAction(Action,N).
 
 //implementation of each action
-+executeAction(look) <- -executeAction(look); searchCrewmatesInRoom.
++chosenAction(look) <- -chosenAction(look); searchCrewmatesInRoom.
 
-+executeAction(kill) : involving(P1)[source(percept)] <- -executeAction(kill); -involving(P1)[source(percept)]; kill(P1).
++chosenAction(kill) : involving(P1)[source(percept)] <- -chosenAction(kill); -involving(P1)[source(percept)]; kill(P1).
 
-+executeAction(deceive) <- -executeAction(deceive); deceive.
++chosenAction(deceive) <- -chosenAction(deceive); deceive.
 
-+executeAction(move) <- -executeAction(move); !nextRoom.
++chosenAction(move) <- -chosenAction(move); !nextRoom.
 
-+executeAction(report,N) : involving(P1,N) <-
++chosenAction(report,N) : involving(P1,N) <-
 												print("I saw ", P1, " killing a crewmate");
 												reportImpostor(P1,X).
 
-+executeAction(dontVote,N) : involving(P1,P2,N) <-
++chosenAction(dontVote,N) : involving(P1,P2,N) <-
 												print("Sorry ", P2, ", I'm not totally sure ", P1, " is an impostor");
 												removeTrust(P1,P2).
 
 //clears the unnecessary beliefs when the game ends
-+endGame <- .abolish(executeAction(_,_)); .abolish(involving(_,_,_)); .abolish(involving(_,_)); .abolish(newSubState(_,_)).
++endGame <- .abolish(chosenAction(_,_)); .abolish(involving(_,_,_)); .abolish(involving(_,_)); .abolish(newSubState(_,_)).
 
 //the next room the crewmate will visit is based on their current room
 +!nextRoom : myRoom(section_1) <- moveToNextRoom(section_2); -myRoom(section_1)[source(_)]; +myRoom(section_2).

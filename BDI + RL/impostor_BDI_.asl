@@ -52,7 +52,7 @@
 //if the impostor is discovered by a cremate and gets the advantage of speaking first, the impostor reports the crewmate to be an impostor
 +advantageReceivedOn(A)[source(percept)] : myColor(X) & not reported(A) & not expelled <-
 										print("I saw ", A, " killing a crewmate");
-										-report(A)[source(percept)];
+										-advantageReceivedOn(A)[source(percept)];
 										+reported(A);
 										reportImpostor(A,X).
 

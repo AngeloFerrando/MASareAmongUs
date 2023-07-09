@@ -21,7 +21,7 @@ substate_action(advantageReceived,report).
 +myState(S1) : not expelled <-
 				.findall(A,state_action(S1,A),L);
 				.nth(0,L,Action);
-				+executeAction(Action).
+				+chosenAction(Action).
 
 //receiving a new state from the environment as a consequence of the executed action
 +newState(NS1)[source(percept)] : myState(S1) <-
@@ -34,41 +34,41 @@ substate_action(advantageReceived,report).
 				-newSubState(S2,N)[source(percept)];
 				.findall(A,substate_action(S2,A),L);
 				.nth(0,L,Action);
-				+executeAction(Action,N).
+				+chosenAction(Action,N).
 
 //implementation of each action
-+executeAction(look) <- -executeAction(look); checkRoomSituation.
++chosenAction(look) <- -chosenAction(look); checkRoomSituation.
 
-+executeAction(repair) : mySkill(S) <- -executeAction(repair); .random(R); if(R < S) {fixMachinery;}.
++chosenAction(repair) : mySkill(S) <- -chosenAction(repair); .random(R); if(R < S) {fixMachinery;}.
 
-+executeAction(move) <- -executeAction(move); !nextRoom.
++chosenAction(move) <- -chosenAction(move); !nextRoom.
 
-+executeAction(trust,N) : involving(P1,N)[source(percept)] <- trust(P1).
++chosenAction(trust,N) : involving(P1,N)[source(percept)] <- trust(P1).
 
-+executeAction(untrust,N) : involving(P1,N)[source(percept)] <- untrust(P1).
++chosenAction(untrust,N) : involving(P1,N)[source(percept)] <- untrust(P1).
 
-+executeAction(voteForAccuser,N) : involving(P1,P2,N) <-
++chosenAction(voteForAccuser,N) : involving(P1,P2,N) <-
 												print("I'm sure ", P2, " is lying and is an impostor, ", P1," is innocent");
 												trust(P1);
 												untrust(P2);
 												reportImpostor(P2,X).
 
-+executeAction(voteForAccused,N) : involving(P1,P2,N) <-
++chosenAction(voteForAccused,N) : involving(P1,P2,N) <-
 												print("Answering to ", P2,", I agree about ", P1, " being an impostor");
 												trust(P2);
 												untrust(P1);
 												emergencyExpulsion(P1).
 
-+executeAction(dontVote,N) : involving(P1,P2,N) <-
++chosenAction(dontVote,N) : involving(P1,P2,N) <-
 												print("Sorry ", P2, ", I'm not totally sure ", P1, " is an impostor");
 												removeTrust(P1,P2).
 												
-+executeAction(report,N) : involving(P1,N) <-
++chosenAction(report,N) : involving(P1,N) <-
 												print("I saw ", P1, " killing a crewmate");
 												reportImpostor(P1,X).
 
 //clears the unnecessary beliefs when the game ends
-+endGame <- .abolish(executeAction(_,_)); .abolish(involving(_,_,_)); .abolish(involving(_,_)); .abolish(newSubState(_,_)).
++endGame <- .abolish(chosenAction(_,_)); .abolish(involving(_,_,_)); .abolish(involving(_,_)); .abolish(newSubState(_,_)).
 
 //the next room the crewmate will visit is based on their current room
 +!nextRoom : myRoom(section_1) <- moveToNextRoom(section_2); -myRoom(section_1)[source(_)]; +myRoom(section_2).
