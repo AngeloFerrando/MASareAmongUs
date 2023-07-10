@@ -2,7 +2,7 @@
 Final project for the master degree exam, university of Genoa, academic year 2022/2023.
 
 ## AgentSpeak & Jason Examples
-If you are not proficient about the use of Jason and AgentSpeak, this directory contains some simple and useful examples to understand how it work, together with the instructions for running them
+If you are not proficient about the use of Jason and AgentSpeak, this directory contains some simple and useful examples to understand how it works, together with the instructions for running them.
 
 ## BDI only
 First version of the project, includes only BDI agents.
