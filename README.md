@@ -20,6 +20,12 @@ Final version of the project, includes both the BDI agents of the first project 
 Here BDI and pre-trained RL agents can play together.
 
 ##
-All of the projects were developed using the Jedit IDE (version 4.2), the Jason Java library (version 3.1) and the AgentSpeak language.
+All of the projects were developed using the Jedit IDE, the Jason Java library and the AgentSpeak language.
+Extra added libraries: YamlBeans Java library 
 
-Extra added libraries: YamlBeans Java library.
+Instruction for run the presented projects:
+- Download the Jedit IDE and its libraries from https://sourceforge.net/projects/jason/
+- Extract the content of the zip file, the executable for the Jedit IDE can be found in the "jedit" directory
+- Open the file "doc/tutorials/getting-started/readme.html" and complete the initial setup of the IDE
+- Download the YamlBeans jar from https://github.com/EsotericSoftware/yamlbeans/tree/master/lib
+- Add the jar file to the "libs" directory
