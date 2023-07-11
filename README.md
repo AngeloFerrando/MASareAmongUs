@@ -30,3 +30,5 @@ Instruction for run the presented projects:
 - Open the file "doc/tutorials/getting-started/readme.html" and complete the initial setup of the IDE
 - Download the YamlBeans jar from https://github.com/EsotericSoftware/yamlbeans/tree/master/lib
 - Add the jar file to the "libs" directory
+- Open the .mas2j file of the project you want to run from the Jedit IDE
+- Launch the project by clicking on the "Run MAS" icon
