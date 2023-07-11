@@ -21,6 +21,7 @@ Here BDI and pre-trained RL agents can play together.
 
 ##
 All of the projects were developed using the Jedit IDE, the Jason Java library and the AgentSpeak language.
+
 Extra added libraries: YamlBeans Java library 
 
 Instruction for run the presented projects:
