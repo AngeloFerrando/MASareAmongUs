@@ -412,7 +412,7 @@ public class SpaceshipEnv extends Environment {
 		boolean padding = false;
 		for (String word : words) {
 			String tryChunk = chunk + (word.equals(words[0]) ? "" : " ") + word;
-			if (tryChunk.length() > 50) {
+			if (tryChunk.length() > 70) {
 				chat.addMessage(color, chunk, padding);
 				chunk = word;
 				padding = true;

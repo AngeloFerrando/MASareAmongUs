@@ -15,7 +15,7 @@ import java.util.TimerTask;
 public class ChatGUI {
 	
 	private final int CHAT_HEIGHT = 600;
-	private final int CHAT_WIDTH = 430;
+	private final int CHAT_WIDTH = 490;
 	private JFrame frame;
 	private JPanel panel;
 	private LinkedList<JLabel> labels = new LinkedList<JLabel>();
@@ -57,15 +57,15 @@ public class ChatGUI {
 				frame.getContentPane().invalidate();
 				
 				if (labels.size() > 0) {
-				int margin = 50;
+				int margin = 30;
 				for (JLabel label : labels) {
 					if (label == null)
 						break;
 					label.setForeground(Color.WHITE);
-					label.setBounds(0,0,400,margin);
+					label.setBounds(0,0,480,margin);
 					label.setFont(new Font("Verdana",1,12));
 					frame.add(label);
-					margin += 50;
+					margin += 60;
 				}
 				}
 				frame.add(panel,BorderLayout.CENTER);
