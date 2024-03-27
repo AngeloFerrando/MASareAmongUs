@@ -1,5 +1,4 @@
-# Master Degree Final Project
-Final project for the master degree exam, university of Genoa, academic year 2022/2023.
+# MASareAmongUs
 
 ## AgentSpeak & Jason Examples
 If you are not proficient about the use of Jason and AgentSpeak, this directory contains some simple and useful examples to understand how it works, together with the instructions for running them.
