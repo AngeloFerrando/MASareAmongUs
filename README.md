@@ -18,6 +18,9 @@ Final version of the project, includes both the BDI agents of the first project 
 
 Here BDI and pre-trained RL agents can play together.
 
+## Safe RL
+Version with external teacher to enforce safety constraints on learning agent.
+
 ##
 All of the projects were developed using the Jedit IDE, the Jason Java library and the AgentSpeak language.
 
