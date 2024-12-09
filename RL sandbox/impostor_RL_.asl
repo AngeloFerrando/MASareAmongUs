@@ -109,7 +109,8 @@ epsilon(0.3).
 
 @startPlan[atomic]
 +start <-
-	.print("starting");                   
+    .wait(3000);
+	.print("starting after waiting for my teacher to teach me");                   
 	+myState(standing,noSubState).
 
 @myStatePlan[atomic]
@@ -124,10 +125,10 @@ epsilon(0.3).
 	}
 	+myAction(Action);
 	executeAction(Action,S1,S2).
-				
+	
 
-@newStatePlan[atomic]
-+newState(NS1,R,N) : myState(S1,S2) & myAction(A) & state_action(S1,S2,A,V) & learning_rate(ALPHA) & discount_factor(GAMMA) <-
+@newStatePlanNotGiven[atomic]
++newState(NS1,R,N) : myState(S1,S2) & myAction(A) &  state_action(S1,S2,A,V) & not given_state_action(S1,S2,A,_) & learning_rate(ALPHA) & discount_factor(GAMMA) <-
 	.findall(value(V1),state_action(NS1,S2,A1,V1),L);
 	.max(L,value(Value));
 	NV = V + ALPHA * (R + GAMMA * Value - V);
@@ -135,6 +136,15 @@ epsilon(0.3).
 	-myState(S1,S2);
 	-state_action(S1,S2,A,V);
 	+state_action(S1,S2,A,NV);
+	+myState(NS1,S2).	
+	
+
+@newStatePlanGiven[atomic]
++newState(NS1,R,N) : myState(S1,S2) & myAction(A) & state_action(S1,S2,A,V) & given_state_action(S1,S2,A,GivenV)  <-
+	-myAction(A);
+	-myState(S1,S2);
+	-state_action(S1,S2,A,V);
+	+state_action(S1,S2,A,GivenV);
 	+myState(NS1,S2).
 											
 @newSubStatePlan[atomic]
@@ -190,3 +200,58 @@ epsilon(0.3).
 		.max(L3,action_value(Value1,Action1));
 		.print("substate_action(",X,",",Action1,")");
 	}.
+	
+/*
+Without safe RL
+[impostor_RL_] state_action(found1,kill)
+[impostor_RL_] state_action(found2orMore,deceive)
+[impostor_RL_] state_action(goalAccomplished,move)
+[impostor_RL_] state_action(notFound,move)
+[impostor_RL_] state_action(standing,look)
+[impostor_RL_] substate_action(advantageReceived,report)
+[impostor_RL_] substate_action(reported,report)
+*/
+
+/* 
+With safe RL1, bad_state_action(found2orMore,_,kill,_).
+[impostor_RL_] state_action(found1,kill)
+[impostor_RL_] state_action(found2orMore,deceive)
+[impostor_RL_] state_action(goalAccomplished,move)
+[impostor_RL_] state_action(notFound,look)
+[impostor_RL_] state_action(standing,look)
+[impostor_RL_] substate_action(advantageReceived,report)
+[impostor_RL_] substate_action(reported,dontVote)
+*/
+
+/* 
+With safe RL2, bad_state_action(found2orMore,_,kill,_).
+[impostor_RL_] state_action(found1,kill)
+[impostor_RL_] state_action(found2orMore,deceive)
+[impostor_RL_] state_action(goalAccomplished,move)
+[impostor_RL_] state_action(notFound,look)
+[impostor_RL_] state_action(standing,look)
+[impostor_RL_] substate_action(advantageReceived,report)
+[impostor_RL_] substate_action(reported,dontVote)
+*/
+
+/* 
+With safe RL3, bad_state_action(found2orMore,_,deceive,_).
+[impostor_RL_] state_action(found1,kill)
+[impostor_RL_] state_action(found2orMore,move)
+[impostor_RL_] state_action(goalAccomplished,move)
+[impostor_RL_] state_action(notFound,look)
+[impostor_RL_] state_action(standing,look)
+[impostor_RL_] substate_action(advantageReceived,report)
+[impostor_RL_] substate_action(reported,dontVote)
+*/
+
+/* 
+With safe RL4, bad_state_action(found2orMore,_,deceive,_). bad_state_action(found1,_,kill,_).
+[impostor_RL_] state_action(found1,move)
+[impostor_RL_] state_action(found2orMore,move)
+[impostor_RL_] state_action(goalAccomplished,move)
+[impostor_RL_] state_action(notFound,move)
+[impostor_RL_] state_action(standing,move)
+[impostor_RL_] substate_action(advantageReceived,report)
+[impostor_RL_] substate_action(reported,dontVote)
+*/
