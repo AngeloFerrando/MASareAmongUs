@@ -17,4 +17,5 @@ MAS rl_training {
 	
     agents: crewmate_RL_;
 			impostor_RL_;
+			teacher_impostor_RL_;
 }
